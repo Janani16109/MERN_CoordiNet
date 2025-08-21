@@ -3,21 +3,41 @@ import Collection from '@/components/shared/Collection'
 import Search from '@/components/shared/Search';
 import { Button } from '@/components/ui/button'
 import { getAllEvents } from '@/lib/actions/event.actions';
+<<<<<<< HEAD
+=======
+import { getAllCategories } from '@/lib/actions/category.actions';
+>>>>>>> 753218d (Pic rectified)
 import { SearchParamProps } from '@/types';
 import Image from 'next/image'
 import Link from 'next/link'
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 753218d (Pic rectified)
 export default async function Home({ searchParams }: SearchParamProps) {
   const page = Number(searchParams?.page) || 1;
   const searchText = (searchParams?.query as string) || '';
   const category = (searchParams?.category as string) || '';
 
+<<<<<<< HEAD
   const events = await getAllEvents({
     query: searchText,
     category,
     page,
     limit: 6
   })
+=======
+  const [events, categories] = await Promise.all([
+    getAllEvents({
+      query: searchText,
+      category,
+      page,
+      limit: 6
+    }),
+    getAllCategories()
+  ]);
+>>>>>>> 753218d (Pic rectified)
 
   return (
     <>
@@ -48,7 +68,11 @@ export default async function Home({ searchParams }: SearchParamProps) {
 
         <div className="flex w-full flex-col gap-5 md:flex-row">
           <Search />
+<<<<<<< HEAD
           <CategoryFilter />
+=======
+          <CategoryFilter categories={categories || []} />
+>>>>>>> 753218d (Pic rectified)
         </div>
 
         <Collection 
